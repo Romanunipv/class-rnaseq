@@ -1,0 +1,17 @@
+image: ghcr.io/lescai-teaching/rstudio-bio-jupyter:latest
+
+# List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
+ports:
+  - name: rstudio
+    port: 8787
+    onOpen: open-browser
+
+tasks:
+  - init: |
+      export PATH="$PATH:/usr/local/bin"
+      R_PATH="PATH=$PATH" && echo $R_PATH > ~/.Renviron
+      sudo rstudio-server start
+  - command: |
+        cd
+        source .bashrc
+        sleep 5000
